@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BaccaratGame
 {
-    public class CoupManager
+    public class CoupManager : ICoupManager
     {
         readonly IPlayer Player;
         readonly ICoup Coup;
@@ -18,20 +15,23 @@ namespace BaccaratGame
             Tie
         }
 
-        readonly Dictionary<BetOption, int> Pot = new() { 
+        readonly Dictionary<BetOption, int> Pot = new()
+        {
             { BetOption.Banker, 0 },
             { BetOption.Player, 0 },
             { BetOption.Tie, 0 },
         };
 
 
-        public CoupManager(IPlayer player, ICoup coup) 
+        public CoupManager(IPlayer player, ICoup coup)
         {
             Player = player;
             Coup = coup;
+        }
 
+        public void Run()
+        {
             Console.WriteLine("\n\t***NEW ROUND***\nWe are starting a new round!");
-
             setPot();
             Coup.DoInitialDeal();
             OutputCoupState();
@@ -122,7 +122,8 @@ namespace BaccaratGame
                     }
                     break;
             }
-            
+            Console.WriteLine($"You have now {Player.Credit} of credits.");
+
         }
 
         void OutputCoupState()

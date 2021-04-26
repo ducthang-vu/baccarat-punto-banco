@@ -1,5 +1,4 @@
 ﻿using BaccaratGame;
-using System;
 
 namespace Baccarat
 {
@@ -7,13 +6,8 @@ namespace Baccarat
     {
         static void Main(string[] args)
         {
-            IPlayer player = new Player("Mario");
-            IDeck deck = new Deck();
-            while (true)
-            {
-                ICoup coup = new Coup(deck);
-                new CoupManager(player, coup);
-            }
+            IGameManager gameManager = new GameManager();
+            gameManager.Run();
         }
     }
 }
