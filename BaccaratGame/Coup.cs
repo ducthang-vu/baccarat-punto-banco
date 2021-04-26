@@ -11,8 +11,8 @@ namespace BaccaratGame
     {
         public List<ICard> BankerCards { get; } = new();
         public List<ICard> PlayerCards { get; } = new();
-        public int BankerScore { get { return BankerCards.Sum(card => (int)card.Rank) % 10; } }
-        public int PlayerScore { get { return PlayerCards.Sum(card => (int)card.Rank) % 10; } }
+        public int BankerScore { get { return BankerCards.Sum(card => card.Value) % 10; } }
+        public int PlayerScore { get { return PlayerCards.Sum(card => card.Value) % 10; } }
         public CoupResult Result { get; private set; } = CoupResult.Pending;
 
         IDeck _deck;
@@ -87,11 +87,11 @@ namespace BaccaratGame
                 {
                     BankerCards.Add(_deck.DealCard());
                 }
-                else if (BankerScore == 4 && ((int)playerLastCard.Rank >= 2 || (int)playerLastCard.Rank <= 7))
+                else if (BankerScore == 4 && (playerLastCard.Value >= 2 || playerLastCard.Value <= 7))
                 {
                     BankerCards.Add(_deck.DealCard());
                 }
-                else if (BankerScore == 5 && ((int)playerLastCard.Rank >= 4 || (int)playerLastCard.Rank <= 7))
+                else if (BankerScore == 5 && (playerLastCard.Value >= 4 || playerLastCard.Value <= 7))
                 {
                     BankerCards.Add(_deck.DealCard());
                 }

@@ -49,7 +49,7 @@ namespace BaccaratGame
             {
                 Console.WriteLine("The deck is ended, a new deck shall be used.");
                 var burnedCard = Deck.DealCard();
-                int burnedCardValue = (int)burnedCard.Rank;
+                int burnedCardValue = burnedCard.Value;
                 Console.WriteLine($"The burn card is a {burnedCard}.\nThus, {burnedCardValue} more card shall be burned.");
                 for (int i = 0; i < burnedCardValue; i++)
                 {

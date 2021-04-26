@@ -19,7 +19,7 @@ namespace BaccaratGame
         /// <returns></returns>
         public static int operator +(Card a, Card b)
         {
-            return ((int)a.Rank + (int)b.Rank) % 10;
+            return (a.Value + b.Value) % 10;
         }
 
         /// <summary>
@@ -31,6 +31,17 @@ namespace BaccaratGame
         /// The rank of the card. May be any of the following: a number from 2 to 10, or a Jack, Queen, King, Ace.
         /// </summary>
         public CardRank Rank { get; }
+
+        /// <summary>
+        /// The value of the card, being either the numeric value, or 1 for an ace, or 0 for face cards.
+        /// </summary>
+        public int Value 
+        { 
+            get 
+            {
+                return Rank.Value();
+            } 
+        }
 
         /// <summary>
         /// A french deck card.
