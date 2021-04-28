@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BaccaratGame
+﻿namespace BaccaratGame
 {
-     /// <summary>
-     /// A class extending the CardRank enum.
-     /// </summary>
+    /// <summary>
+    /// A class extending the CardRank enum.
+    /// </summary>
     public static class CardRankExtension
     {
         /// <summary>

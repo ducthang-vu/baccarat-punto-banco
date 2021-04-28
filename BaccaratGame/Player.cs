@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BaccaratGame
 {
@@ -24,7 +20,8 @@ namespace BaccaratGame
 
         public int SubtractCredit(int quantity)
         {
-            if (quantity > Credit) {
+            if (quantity > Credit)
+            {
                 throw new InvalidOperationException("Insufficient funds.");
             }
             Credit -= quantity;

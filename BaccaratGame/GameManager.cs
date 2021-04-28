@@ -4,8 +4,8 @@ namespace BaccaratGame
 {
     public class GameManager : IGameManager
     {
-        public IPlayer Player { get; private set; }
-        public IDeck Deck { get; private set; } = new Deck();
+        IPlayer _player;
+        IDeck _deck = new Deck();
 
         public void Run()
         {
@@ -15,10 +15,10 @@ namespace BaccaratGame
             while (true)
             {
                 DoPreCoup();
-                ICoup coup = new Coup(Deck);
-                ICoupManager coupManager = new CoupManager(Player, coup);
+                ICoup coup = new Coup(_deck);
+                ICoupManager coupManager = new CoupManager(_player, coup);
                 coupManager.Run();
-                if (Player.Credit <= 0)
+                if (_player.Credit <= 0)
                 {
                     Console.WriteLine("You are out of cash, see you next time");
                     break;
@@ -39,21 +39,21 @@ namespace BaccaratGame
         void SetPlayer()
         {
             string name = Console.ReadLine();
-            Player = new Player(name);
-            Console.WriteLine($"{Player.Name}, you have {Player.Credit} of credit, enjoy!");
+            _player = new Player(name);
+            Console.WriteLine($"{_player.Name}, you have {_player.Credit} of credit, enjoy!");
         }
 
         void DoPreCoup()
         {
-            if (Deck.Count <= 7)
+            if (_deck.Count <= 7)
             {
                 Console.WriteLine("The deck is ended, a new deck shall be used.");
-                var burnedCard = Deck.DealCard();
+                var burnedCard = _deck.DealCard();
                 int burnedCardValue = burnedCard.Value;
                 Console.WriteLine($"The burn card is a {burnedCard}.\nThus, {burnedCardValue} more card shall be burned.");
                 for (int i = 0; i < burnedCardValue; i++)
                 {
-                    Deck.DealCard();
+                    _deck.DealCard();
                 }
             }
         }
